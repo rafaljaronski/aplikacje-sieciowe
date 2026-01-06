@@ -1,0 +1,219 @@
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "Segoe UI";
+	line-height: 1.6;
+	color: #333;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 20px;
+}
+
+/* header */
+.header {
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	color: white;
+	padding: 20px 0;
+	box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.header-content {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.header h1 {
+	font-size: 1.8rem;
+	font-weight: 700;
+}
+
+.header h1 i {
+	margin-right: 10px;
+}
+
+.nav-menu {
+	display: flex;
+	gap: 15px;
+	align-items: center;
+}
+
+.nav-menu a {
+	color: white;
+	text-decoration: none;
+	padding: 8px 15px;
+	border-radius: 5px;
+	transition: 0.3s;
+    /* usuniecie przeskakiwania przycisku przy hover, ktory dodaje border */
+    border: 1px solid rgba(255, 255, 255, 0);
+}
+
+.nav-menu a:hover {
+    background: rgba(255,255,255,0.3);
+	border: 1px solid rgba(255,255,255,0.4);
+}
+
+.nav-menu .logout-btn {
+	background: rgba(255,255,255,0.2);
+	border: 1px solid rgba(255,255,255,0.4);
+}
+
+/* formularz logowania */
+.login-form {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+}
+
+.login-form input {
+	padding: 8px 12px;
+	border: 1px solid rgba(255,255,255,0.3);
+	border-radius: 5px;
+	background: rgba(255,255,255,0.1);
+	color: white;
+	font-size: 0.9rem;
+}
+
+.login-form input::placeholder {
+	color: rgba(255,255,255,0.7);
+}
+
+.login-form input:focus {
+	outline: none;
+	background: rgba(255,255,255,0.2);
+	border-color: rgba(255,255,255,0.5);
+}
+
+.login-form button {
+	padding: 8px 20px;
+	background: white;
+	color: #667eea;
+    border: none;
+	border-radius: 5px;
+	font-weight: 600;
+	transition: all 0.3s;
+    cursor: pointer;
+}
+
+.login-form button:hover {
+	background: rgba(255,255,255,0.9);
+	box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* glowna tresc */
+.main-content {
+	padding: 60px 20px;
+	flex: 1;
+}
+
+.page-title {
+	text-align: center;
+	margin-bottom: 40px;
+	color: #667eea;
+	font-size: 2.5rem;
+}
+
+.default-content {
+	text-align: center;
+	padding: 40px;
+}
+
+/* karta artykulu */
+.article-card {
+	padding: 30px;
+	border-radius: 15px;
+	box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+	margin-bottom: 30px;
+}
+
+.article-card p {
+	color: #555;
+	line-height: 1.8;
+}
+
+/* komunikaty */
+.messages {
+	margin: 20px 0;
+}
+
+.err, .inf, .res {
+	padding: 15px 20px;
+	border-radius: 10px;
+	margin-bottom: 10px;
+	font-weight: 500;
+}
+
+.err {
+	background: #fee;
+	color: #c33;
+}
+
+.inf {
+	background: #efe;
+	color: #292;
+}
+
+.res {
+	background: #ffffcc;
+	color: #555;
+}
+
+/* stopka */
+.footer {
+	background: #2d3748;
+	color: #cbd5e0;
+	padding: 20px;
+	text-align: center;
+}
+
+.footer-content {
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.footer-content p {
+	margin: 5px 0;
+	font-size: 0.9rem;
+	opacity: 0.9;
+}
+
+/* responsive */
+@media (max-width: 768px) {
+	.header-content {
+		flex-direction: column;
+		gap: 20px;
+	}
+	
+	.login-form {
+		flex-direction: column;
+		width: 100%;
+	}
+	
+	.login-form input {
+		width: 100%;
+	}
+	
+	.nav-menu {
+		flex-direction: column;
+		width: 100%;
+	}
+	
+	.nav-menu a {
+		width: 100%;
+		text-align: center;
+	}
+}
