@@ -11,19 +11,15 @@
 
 <div class="header">
 	<div class="header-content">
-		<h1>
-			<i class="fas fa-newspaper"></i> 
-		@yield('header_title', 'Artykuły')
-        </h1>
+		<h1><i class="fas fa-newspaper"></i>@yield('header_title', 'Artykuły')</h1>
 		<nav class="nav-menu">
-			@if(session('user_role'))
-				<!-- zalogowany -->	
-                <a href="{{ url('/') }}">
-					<i class="fas fa-newspaper"></i> Test button
-				</a>	
-				<a href="{{ url('/logout') }}" class="logout-btn">
-					<i class="fas fa-right-from-bracket"></i> Wyloguj
-				</a>
+			@if(session('user_roles'))
+				<!-- zalogowany -->
+                <a href="{{ route('home') }}"><i class="fas fa-home"></i> Strona główna</a>
+				@if(in_array('Autor', session('user_roles', [])))
+					<a href="{{ route('articles.create') }}"><i class="fas fa-plus"></i> Nowy artykuł</a>
+				@endif
+				<a href="{{ url('/logout') }}" class="logout-btn"><i class="fas fa-right-from-bracket"></i> Wyloguj</a>
 			@else
 				<!-- gosc -->
 				<form method="POST" action="{{ url('/login') }}" class="login-form">
@@ -33,17 +29,13 @@
 						name="email" 
 						placeholder="Email" 
 						required 
-						value="{{ old('email') }}"
-					>
+						value="{{ old('email') }}">
 					<input 
 						type="password" 
 						name="password" 
 						placeholder="Hasło" 
-						required
-					>
-					<button type="submit">
-						<i class="fas fa-right-to-bracket"></i> Zaloguj
-					</button>
+						required>
+					<button type="submit"><i class="fas fa-right-to-bracket"></i> Zaloguj</button>
 				</form>
 			@endif
 		</nav>
@@ -71,6 +63,15 @@
 			</div>
 		@endif
 		
+		<!-- bledy walidacji -->
+		@if ($errors->any())
+			<div class="messages">
+				@foreach ($errors->all() as $error)
+					<div class="err">{{ $error }}</div>
+				@endforeach
+			</div>
+		@endif
+		
 		<!-- content -->
 		@yield('content')
 	</div>
@@ -79,9 +80,7 @@
 <!-- stopka -->
 <footer class="footer">
 	<div class="footer-content">
-		@section('footer')
 		<p>Projekt Aplikacje Sieciowe</p>
-		@show
 	</div>
 </footer>
 

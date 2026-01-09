@@ -15,7 +15,7 @@ body {
 }
 
 .container {
-	max-width: 1200px;
+	max-width: 900px;
 	margin: 0 auto;
 	padding: 0 20px;
 }
@@ -39,7 +39,6 @@ body {
 
 .header h1 {
 	font-size: 1.8rem;
-	font-weight: 700;
 }
 
 .header h1 i {
@@ -104,7 +103,6 @@ body {
 	color: #667eea;
     border: none;
 	border-radius: 5px;
-	font-weight: 600;
 	transition: all 0.3s;
     cursor: pointer;
 }
@@ -120,29 +118,55 @@ body {
 	flex: 1;
 }
 
-.page-title {
-	text-align: center;
-	margin-bottom: 40px;
-	color: #667eea;
-	font-size: 2.5rem;
-}
-
-.default-content {
-	text-align: center;
-	padding: 40px;
-}
-
-/* karta artykulu */
-.article-card {
+.card {
 	padding: 30px;
 	border-radius: 15px;
 	box-shadow: 0 5px 20px rgba(0,0,0,0.1);
 	margin-bottom: 30px;
 }
 
-.article-card p {
+/* lista artykulow - index */
+.article-header h2 {
+	margin: 0 0 10px 0;
+	font-size: 24px;
+}
+
+.article-header h2 a {
+	color: #2c3e50;
+	text-decoration: none;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+}
+
+.article-header h2 a:hover {
+	color: #667eea;
+}
+
+.article-meta {
+	display: flex;
+	gap: 15px;
+	align-items: center;
+	font-size: 14px;
+	color: #7f8c8d;
+}
+
+.article-content,
+.article-title {
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+}
+
+.article-content {
+	margin: 0;
 	color: #555;
 	line-height: 1.8;
+}
+
+.no-content {
+	text-align: center;
+	color: #7f8c8d;
+	padding: 40px;
+	font-size: 16px;
 }
 
 /* komunikaty */
@@ -172,6 +196,141 @@ body {
 	color: #555;
 }
 
+/* formularze */
+
+.form-group {
+	margin-bottom: 25px;
+}
+
+.form-group label {
+	display: block;
+	margin-bottom: 8px;
+	color: #2c3e50;
+}
+
+.form-control {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	font-size: 14px;
+	font-family: inherit;
+}
+
+.form-control:focus {
+	outline: none;
+	border-color: #667eea;
+	box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+textarea.form-control {
+	resize: vertical;
+	line-height: 1.6;
+}
+
+.form-actions {
+	display: flex;
+	gap: 10px;
+}
+
+/* przyciski */
+.btn {
+	display: inline-block;
+	padding: 12px 24px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 14px;
+	text-decoration: none;
+	text-align: center;
+	transition: all 0.3s;
+	vertical-align: middle;
+	line-height: 1.4;
+	font-family: inherit;
+	box-sizing: border-box;
+}
+
+button.btn {
+	appearance: none;
+	-webkit-appearance: none;
+}
+
+.btn-primary {
+	background-color: #27ae60;
+	color: white;
+}
+
+.btn-primary:hover {
+	background-color: #229954;
+}
+
+.btn-secondary {
+	background-color: #95a5a6;
+	color: white;
+}
+
+.btn-secondary:hover {
+	background-color: #7f8c8d;
+}
+
+/* szczegoly artykulu - show */
+.article-title {
+	margin: 0 0 20px 0;
+	color: #2c3e50;
+	hyphens: auto;
+	padding-bottom: 20px;
+	border-bottom: 2px solid #eee;
+}
+
+.card .article-meta {
+	flex-wrap: wrap;
+	gap: 20px;
+	margin-bottom: 30px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #eee;
+}
+
+.meta-item {
+	display: flex;
+	gap: 5px;
+}
+
+.card .article-content {
+	margin-bottom: 30px;
+	font-size: 16px;
+}
+
+.review-info {
+	background-color: #f8f9fa;
+	padding: 20px;
+	border-radius: 5px;
+	margin-bottom: 30px;
+}
+
+.review-info h3 {
+	margin-top: 0;
+	color: #2c3e50;
+	font-size: 18px;
+}
+
+.article-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	padding-top: 20px;
+	border-top: 1px solid #eee;
+	align-items: flex-start;
+}
+
+.btn-danger {
+	background-color: #e74c3c;
+	color: white;
+}
+
+.btn-danger:hover {
+	background-color: #c0392b;
+}
+
 /* stopka */
 .footer {
 	background: #2d3748;
@@ -191,29 +350,3 @@ body {
 	opacity: 0.9;
 }
 
-/* responsive */
-@media (max-width: 768px) {
-	.header-content {
-		flex-direction: column;
-		gap: 20px;
-	}
-	
-	.login-form {
-		flex-direction: column;
-		width: 100%;
-	}
-	
-	.login-form input {
-		width: 100%;
-	}
-	
-	.nav-menu {
-		flex-direction: column;
-		width: 100%;
-	}
-	
-	.nav-menu a {
-		width: 100%;
-		text-align: center;
-	}
-}
