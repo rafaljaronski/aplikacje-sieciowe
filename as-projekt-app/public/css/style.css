@@ -279,7 +279,7 @@ button.btn {
 	color: #2c3e50;
 	hyphens: auto;
 	padding-bottom: 20px;
-	border-bottom: 2px solid #eee;
+	border-bottom: 1px solid #eee;
 }
 
 .card .article-meta {

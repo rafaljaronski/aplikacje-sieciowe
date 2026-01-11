@@ -22,7 +22,7 @@
 
         <div class="form-actions">
             <button type="submit" name="action" value="draft" class="btn btn-secondary">Zapisz jako wersję roboczą</button>
-            <button type="submit" name="action" value="pending" class="btn btn-primary">Wyślij do moderacji</button>
+            <button type="submit" name="action" value="pending" class="btn btn-primary">Wyślij do akceptacji</button>
             <a href="{{ route('articles.index') }}" class="btn btn-secondary">Anuluj</a>
         </div>
     </form>

@@ -9,6 +9,9 @@ use App\Http\Controllers\ArticleController;
 // strona glowna - lista artykulow
 Route::get('/', [ArticleController::class, 'index'])->name('home');
 
+// zarzadzanie artykulami (autor/moderator)
+Route::get('/articles/manage', [ArticleController::class, 'manage'])->name('articles.manage');
+
 // logowanie
 Route::post('/login', function (Request $request) {
     $email = $request->input('email');

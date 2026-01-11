@@ -9,25 +9,37 @@ use Illuminate\Http\Request;
 class ArticleController extends Controller
 {
     public function index() {
-        $canViewAll = session('user_roles') && (
-            in_array('Autor', session('user_roles', [])) ||
-            in_array('Moderator', session('user_roles', []))
-        );
+        // strona gglowna, zatwierdzone artykuly
+        $articles = Article::with(['author', 'status'])
+            ->where('status_id', function($query) {
+                $query->select('id')->from('article_status')->where('name', 'approved')->limit(1);
+            })
+            ->orderBy('created_at', 'desc')
+            ->get();
         
-        if ($canViewAll) {
-            // autor/moderator wszystkie artykuły
-            $articles = Article::with(['author', 'status', 'reviewer'])
+        return view('articles.index', compact('articles'));
+    }
+    
+    // autor/moderator zarzadzanie artykulami
+    public function manage() {
+        if (!session('user_roles') || 
+            (!in_array('Autor', session('user_roles', [])) && !in_array('Moderator', session('user_roles', [])))) {
+            return redirect()->route('home')->with('error', 'Nie masz dostępu');
+        }
+        
+        if (in_array('Moderator', session('user_roles', []))) {
+            // moderator widzi wszystkie artykuly
+            $articles = Article::with(['author', 'status'])
                 ->orderBy('created_at', 'desc')
                 ->get();
         } else {
-            // gosc/czytelnik tylko zatwierdzone
+            //autor widzi swoje artykuly
             $articles = Article::with(['author', 'status'])
-                ->where('status_id', function($query) {
-                    $query->select('id')->from('article_status')->where('name', 'approved')->limit(1);
-                })
+                ->where('author_id', session('user_id'))
                 ->orderBy('created_at', 'desc')
                 ->get();
         }
+        
         return view('articles.index', compact('articles'));
     }
 
@@ -65,7 +77,7 @@ class ArticleController extends Controller
             'author_id' => session('user_id')
         ]);
         
-        $message = $action === 'pending' ? 'Artykuł został wysłany do moderacji' : 'Została utworzona wersja robocza artykułu';
+        $message = $action === 'pending' ? 'Artykuł został wysłany do akceptacji' : 'Została utworzona wersja robocza artykułu';
         return redirect()->route('articles.index')->with('success', $message);
     }
 
@@ -114,12 +126,22 @@ class ArticleController extends Controller
             'content.required' => 'Treść artykułu jest wymagana'
         ]);
         
-        $article->update([
+        $updateData = [
             'title' => $validated['title'],
             'content' => $validated['content']
-        ]);
+        ];
         
-        return redirect()->route('articles.show', $article)->with('success', 'Artykuł został zaktualizowany');
+        // button z action, wyslanie odrzuconego do ponownej akceptacji
+        $message = 'Artykuł został zaktualizowany';
+        if ($request->input('action') === 'pending' && $article->status->name === 'rejected') {
+            $pendingStatus = ArticleStatus::where('name', 'pending')->first();
+            $updateData['status_id'] = $pendingStatus->id;
+            $message = 'Artykuł został zaktualizowany i wysłany do akceptacji';
+        }
+        
+        $article->update($updateData);
+        
+        return redirect()->route('articles.show', $article)->with('success', $message);
     }
 
     // usuwanie artykulu

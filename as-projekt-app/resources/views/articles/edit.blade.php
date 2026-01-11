@@ -20,6 +20,9 @@
 
         <div class="form-actions">
             <button type="submit" class="btn btn-primary">Zapisz zmiany</button>
+            @if($article->status->name === 'rejected')
+                <button type="submit" name="action" value="pending" class="btn btn-primary">Wyślij do akceptacji</button>
+            @endif
             <a href="{{ route('articles.show', $article) }}" class="btn btn-secondary">Anuluj</a>
         </div>
     </form>

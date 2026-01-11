@@ -54,7 +54,7 @@
                     @if($article->status->name === 'draft')
                         <form method="POST" action="{{ route('articles.submit', $article) }}" style="display: inline;">
                             @csrf
-                            <button type="submit" class="btn btn-primary">Wyślij do moderacji</button>
+                            <button type="submit" class="btn btn-primary">Wyślij do akceptacji</button>
                         </form>
                     @endif
                 @endif

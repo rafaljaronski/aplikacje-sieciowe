@@ -15,7 +15,11 @@
 		<nav class="nav-menu">
 			@if(session('user_roles'))
 				<!-- zalogowany -->
+				 <p>{{ session('user_email') }}</p>
                 <a href="{{ route('home') }}"><i class="fas fa-home"></i> Strona główna</a>
+				@if(in_array('Autor', session('user_roles', [])) || in_array('Moderator', session('user_roles', [])))
+					<a href="{{ route('articles.manage') }}"><i class="fas fa-tasks"></i> Zarządzaj</a>
+				@endif
 				@if(in_array('Autor', session('user_roles', [])))
 					<a href="{{ route('articles.create') }}"><i class="fas fa-plus"></i> Nowy artykuł</a>
 				@endif
