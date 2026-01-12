@@ -16,6 +16,9 @@ SHOW GRANTS FOR 'appuser'@'localhost';
 -- php -r "echo password_hash('czytelnik', PASSWORD_BCRYPT, ['cost' => 12]);"
 -- $2y$12$ZJVT.pD/8tJ2yzQ5LJYQ5efDa3SbjCSCMa9QRR8q1hnllh/0upJ.S
 
+-- php -r "echo password_hash('autor2', PASSWORD_BCRYPT, ['cost' => 12]);"
+-- $2y$12$2qnE1LCM6CcjtKJ48H57xeqRvngo//TIvenNeuirGVvxQtCm46uXK
+
 -- /d/xampp/mysql/bin/mysql.exe -u appuser -pappuserpswrd asprojektapp < as-projekt-app/mysqlrun.sql
 
 CREATE TABLE user (
@@ -37,6 +40,12 @@ INSERT INTO user (email, password, first_name, last_name) VALUES
 ('autor@projekt.pl', '$2y$12$lAlU4s8a4vuIgKitYuvucuE/T9/JqED2mR.jOMpEdXGPtljJSfTX2', 'Aaa', 'Autornazwisko'),
 ('moderator@projekt.pl', '$2y$12$eNLxkW4zGZnclAs0TYjsVe9rtwSjIxWgs5MCLL20xEXUvPjwzHY/e', 'Mmm', 'Moderatornazwisko'),
 ('czytelnik@projekt.pl', '$2y$12$ZJVT.pD/8tJ2yzQ5LJYQ5efDa3SbjCSCMa9QRR8q1hnllh/0upJ.S', 'Ccc', 'Czytelniknazwisko');
+
+INSERT INTO user (email, password, first_name, last_name) VALUES
+('autor2@projekt.pl', '$2y$12$2qnE1LCM6CcjtKJ48H57xeqRvngo//TIvenNeuirGVvxQtCm46uXK', 'Aaa2', 'Autor2nazwisko');
+INSERT INTO user_role (user_id, role_id) VALUES
+(5, 2);
+
 
 CREATE TABLE role (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,

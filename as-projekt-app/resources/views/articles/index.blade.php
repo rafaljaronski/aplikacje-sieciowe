@@ -4,6 +4,25 @@
 
 @section('content')
 <div class="container">
+    <form method="GET" class="search-form">
+        <input type="text" name="search" placeholder="Szukaj po tytule" value="{{ request('search') }}" class="search-input">
+        
+        @if(Route::currentRouteName() === 'articles.manage')
+            <select name="status" class="form-control status-select">
+                <option value="">Wszystkie statusy</option>
+                @foreach($statuses ?? [] as $status)
+                    <option value="{{ $status->id }}" {{ request('status') == $status->id ? 'selected' : '' }}>
+                        {{ $status->display_status }}
+                    </option>
+                @endforeach
+            </select>
+        @endif
+        
+        <button type="submit" class="btn btn-primary">Szukaj</button>
+        @if(request('search') || request('status'))
+            <a href="{{ url()->current() }}" class="btn btn-secondary">Wyczyść</a>
+        @endif
+    </form>
 
     @if($articles->isEmpty())
         <p class="no-content">Brak artykułów do wyświetlenia.</p>

@@ -8,20 +8,26 @@ use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
-    public function index() {
-        // strona gglowna, zatwierdzone artykuly
-        $articles = Article::with(['author', 'status'])
+    public function index(Request $request) {
+        // strona glowna, zatwierdzone artykuly
+        $query = Article::with(['author', 'status'])
             ->where('status_id', function($query) {
                 $query->select('id')->from('article_status')->where('name', 'approved')->limit(1);
-            })
-            ->orderBy('created_at', 'desc')
-            ->get();
+            });
+        
+        // wyszukiwanie po tytule caseinsensitive
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+            $query->whereRaw('LOWER(title) LIKE ?', ['%' . strtolower($search) . '%']);
+        }
+        
+        $articles = $query->orderBy('created_at', 'desc')->get();
         
         return view('articles.index', compact('articles'));
     }
     
     // autor/moderator zarzadzanie artykulami
-    public function manage() {
+    public function manage(Request $request) {
         if (!session('user_roles') || 
             (!in_array('Autor', session('user_roles', [])) && !in_array('Moderator', session('user_roles', [])))) {
             return redirect()->route('home')->with('error', 'Nie masz dostępu');
@@ -29,18 +35,28 @@ class ArticleController extends Controller
         
         if (in_array('Moderator', session('user_roles', []))) {
             // moderator widzi wszystkie artykuly
-            $articles = Article::with(['author', 'status'])
-                ->orderBy('created_at', 'desc')
-                ->get();
+            $query = Article::with(['author', 'status']);
         } else {
             //autor widzi swoje artykuly
-            $articles = Article::with(['author', 'status'])
-                ->where('author_id', session('user_id'))
-                ->orderBy('created_at', 'desc')
-                ->get();
+            $query = Article::with(['author', 'status'])
+                ->where('author_id', session('user_id'));
         }
         
-        return view('articles.index', compact('articles'));
+        // wyszukiwanie po tytule caseinsensitive
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+            $query->whereRaw('LOWER(title) LIKE ?', ['%' . strtolower($search) . '%']);
+        }
+        
+        // filtrowanie po statusie
+        if ($request->filled('status')) {
+            $query->where('status_id', $request->input('status'));
+        }
+        
+        $articles = $query->orderBy('created_at', 'desc')->get();
+        $statuses = ArticleStatus::all();
+        
+        return view('articles.index', compact('articles', 'statuses'));
     }
 
     // nowy artykul

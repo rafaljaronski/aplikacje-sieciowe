@@ -118,6 +118,38 @@ body {
 	flex: 1;
 }
 
+/* wyszukiwarka */
+.search-form {
+	display: flex;
+	gap: 10px;
+	margin-bottom: 30px;
+	align-items: center;
+}
+
+.search-input,
+.status-select,
+.form-control {
+	padding: 12px 12px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	font-size: 14px;
+	transition: border-color 0.3s;
+}
+
+.search-input {
+	flex: 1;
+}
+
+.status-select {
+	flex: 0 0 200px;
+	background-color: white;
+	cursor: pointer;
+}
+
+.form-control {
+	width: 100%;
+}
+
 .card {
 	padding: 30px;
 	border-radius: 15px;
@@ -206,21 +238,6 @@ body {
 	display: block;
 	margin-bottom: 8px;
 	color: #2c3e50;
-}
-
-.form-control {
-	width: 100%;
-	padding: 10px;
-	border: 1px solid #ddd;
-	border-radius: 5px;
-	font-size: 14px;
-	font-family: inherit;
-}
-
-.form-control:focus {
-	outline: none;
-	border-color: #667eea;
-	box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
 textarea.form-control {
