@@ -245,6 +245,17 @@ textarea.form-control {
 	line-height: 1.6;
 }
 
+.error-message {
+	display: block;
+	color: #c33;
+	font-size: 13px;
+	margin-top: 5px;
+}
+
+.form-control.is-invalid {
+	border-color: #c33;
+}
+
 .form-actions {
 	display: flex;
 	gap: 10px;

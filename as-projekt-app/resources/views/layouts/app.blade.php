@@ -41,6 +41,7 @@
 						required>
 					<button type="submit"><i class="fas fa-right-to-bracket"></i> Zaloguj</button>
 				</form>
+				<a href="{{ route('register') }}" class="logout-btn"><i class="fas fa-user-plus"></i> Rejestracja</a>
 			@endif
 		</nav>
 	</div>
