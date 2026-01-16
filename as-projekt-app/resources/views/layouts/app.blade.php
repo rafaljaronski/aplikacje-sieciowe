@@ -23,6 +23,9 @@
 				@if(in_array('Autor', session('user_roles', [])))
 					<a href="{{ route('articles.create') }}"><i class="fas fa-plus"></i> Nowy artykuł</a>
 				@endif
+				@if(in_array('Administrator', session('user_roles', [])))
+					<a href="{{ route('users.index') }}"><i class="fas fa-users"></i> Użytkownicy</a>
+				@endif
 				<a href="{{ url('/logout') }}" class="logout-btn"><i class="fas fa-right-from-bracket"></i> Wyloguj</a>
 			@else
 				<!-- gosc -->

@@ -359,6 +359,44 @@ button.btn {
 	background-color: #c0392b;
 }
 
+/* zarzadzanie uzytkownikami */
+.user-card {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 30px;
+}
+
+.user-info h3 {
+	margin: 0 0 5px 0;
+	font-size: 20px;
+}
+
+.user-info p {
+	margin: 5px 0;
+	color: #7f8c8d;
+	font-size: 14px;
+}
+
+.roles-checkboxes {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	margin-bottom: 15px;
+}
+
+.role-checkbox {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	cursor: pointer;
+}
+
+.admin-notice {
+	color: #7f8c8d;
+	font-style: italic;
+}
+
 /* stopka */
 .footer {
 	background: #2d3748;

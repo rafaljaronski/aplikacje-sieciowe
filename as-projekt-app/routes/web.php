@@ -6,12 +6,17 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Role;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\UserController;
 
 // strona glowna - lista artykulow
 Route::get('/', [ArticleController::class, 'index'])->name('home');
 
 // zarzadzanie artykulami (autor/moderator)
 Route::get('/articles/manage', [ArticleController::class, 'manage'])->name('articles.manage');
+
+// zarzadzanie uzytkownikami (administrator)
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::post('/users/{user}/roles', [UserController::class, 'updateRoles'])->name('users.updateRoles');
 
 // rejestracja
 Route::get('/register', function () {
