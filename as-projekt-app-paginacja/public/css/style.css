@@ -410,6 +410,47 @@ button.btn {
 .status-approved  { background: #eafaf1; color: #1e8449; }
 .status-rejected  { background: #fdedec; color: #c0392b; }
 
+/* paginacja */
+.pagination-wrapper {
+	margin-top: 30px;
+	display: flex;
+	justify-content: center;
+}
+
+.pagination-list {
+	display: flex;
+	list-style: none;
+	gap: 4px;
+	padding: 0;
+	margin: 0;
+}
+
+.pagination-item a,
+.pagination-item span {
+	display: inline-block;
+	padding: 6px 12px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	color: #667eea;
+	text-decoration: none;
+	font-size: 14px;
+}
+
+.pagination-item a:hover {
+	background: #f0f0f0;
+}
+
+.pagination-item.active span {
+	background: #667eea;
+	color: white;
+	border-color: #667eea;
+}
+
+.pagination-item.disabled span {
+	color: #bbb;
+	cursor: default;
+}
+
 /* stopka */
 .footer {
 	background: #2d3748;

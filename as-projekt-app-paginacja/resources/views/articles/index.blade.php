@@ -42,6 +42,10 @@
                 <p class="article-content">{{ Str::limit($article->content, 200) }}</p>
             </div>
         @endforeach
+
+        <div class="pagination-wrapper">
+            {{ $articles->appends(request()->query())->links() }}
+        </div>
     @endif
 </div>
 @endsection

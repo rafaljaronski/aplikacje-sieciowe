@@ -21,7 +21,7 @@ class ArticleController extends Controller
             $query->whereRaw('LOWER(title) LIKE ?', ['%' . strtolower($search) . '%']);
         }
         
-        $articles = $query->orderBy('created_at', 'desc')->get();
+        $articles = $query->orderBy('created_at', 'desc')->paginate(5);
         
         return view('articles.index', compact('articles'));
     }
@@ -53,7 +53,7 @@ class ArticleController extends Controller
             $query->where('status_id', $request->input('status'));
         }
         
-        $articles = $query->orderBy('created_at', 'desc')->get();
+        $articles = $query->orderBy('created_at', 'desc')->paginate(5);
         $statuses = ArticleStatus::all();
         
         return view('articles.index', compact('articles', 'statuses'));
