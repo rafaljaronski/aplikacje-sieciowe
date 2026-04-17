@@ -397,6 +397,19 @@ button.btn {
 	font-style: italic;
 }
 
+/* statusy artykulow */
+.status-badge {
+	padding: 2px 10px;
+	border-radius: 10px;
+	font-size: 12px;
+	font-weight: 500;
+}
+
+.status-draft     { background: #ecf0f1; color: #7f8c8d; }
+.status-pending   { background: #fef9e7; color: #d68910; }
+.status-approved  { background: #eafaf1; color: #1e8449; }
+.status-rejected  { background: #fdedec; color: #c0392b; }
+
 /* stopka */
 .footer {
 	background: #2d3748;
