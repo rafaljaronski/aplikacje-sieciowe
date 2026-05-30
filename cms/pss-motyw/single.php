@@ -17,7 +17,7 @@
             </div>
 
             <div class="article-actions">
-                <a href="<?php echo esc_url(home_url('/')); ?>" class="btn">Wróć</a>
+                <a href="<?php echo esc_url(get_permalink(get_option('page_for_posts'))); ?>" class="btn">Wróć</a>
             </div>
 
         </article>
